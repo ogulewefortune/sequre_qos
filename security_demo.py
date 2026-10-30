@@ -20,6 +20,7 @@ def demo(path):
         L = TRAFFIC[c]["size"]
         lines.append(f"  {CLASS_NAMES[c]:5s}: {L} B -> {L+TAG_BYTES} B  (+{100*TAG_BYTES/L:.1f}% bytes, {8*L/C_BPS*1e6:.1f} -> {8*(L+TAG_BYTES)/C_BPS*1e6:.1f} us)")
     lines.append(f"Measured HMAC recompute+compare time (gateway verification) on this host (Python hmac): {us:.2f} us/packet")
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
     open(path, "w").write("\n".join(lines) + "\n"); print("\n".join(lines)); return us
 
 if __name__ == "__main__":
