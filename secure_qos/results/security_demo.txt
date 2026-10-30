@@ -1,0 +1,10 @@
+[1] VALID  voice packet (src 7, mark=voice, seq 1, 120 B), tag=65fa438db1973525...  -> accepted: True
+[2] MODIFIED packet (length changed 120->121, same tag)                            -> accepted: False  (rejected)
+[3] MODIFIED priority mark (voice->video, same tag)                              -> accepted: False  (rejected)
+[4] UNAUTHORIZED source claims voice mark, forged random tag                       -> accepted: False  (reclassified to data queue)
+
+Tag overhead: 16 B per packet -> extra transmission time 12.8 us at 10 Mbps
+  voice: 120 B -> 136 B  (+13.3% bytes, 96.0 -> 108.8 us)
+  video: 1000 B -> 1016 B  (+1.6% bytes, 800.0 -> 812.8 us)
+  data : 583 B -> 599 B  (+2.7% bytes, 466.4 -> 479.2 us)
+Measured HMAC recompute+compare time (gateway verification) on this host (Python hmac): 3.50 us/packet
